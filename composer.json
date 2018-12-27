@@ -1,5 +1,5 @@
 {
-  "name": "mixstart/mix-redis",
+  "name": "mix/redis",
   "description": "MixPHP 框架模块 http://www.mixphp.cn",
   "type": "framework",
   "keywords": [
