@@ -180,7 +180,7 @@ use Mix\Core\Component;
  * @method mixed rawCommand($command, $arguments)
  * @method int getMode()
  */
-class BaseRedisConnection extends Component
+class BaseRedisConnection extends Component implements RedisConnectionInterface
 {
 
     // 主机
