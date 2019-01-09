@@ -2,13 +2,13 @@
 
 namespace Mix\Redis\Async;
 
-use Mix\Core\BaseObject;
+use Mix\Core\DIObject;
 
 /**
  * RedisAsync类
  * @author LIUJIAN <coder.keda@gmail.com>
  */
-class RedisConnection extends BaseObject
+class RedisConnection extends DIObject
 {
 
     // 主机
