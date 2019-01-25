@@ -5,16 +5,16 @@ namespace Mix\Redis\Pool;
 use Mix\Pool\DialInterface;
 
 /**
- * Class RedisConnectionDial
+ * Class Dial
  * @author LIUJIAN <coder.keda@gmail.com>
- * @package Mix\Redis\Coroutine
+ * @package Mix\Redis\Pool
  */
 class Dial implements DialInterface
 {
 
     /**
-     * 拨号
-     * @return RedisConnection
+     * 处理
+     * @return \Mix\Redis\Coroutine\RedisConnection
      */
     public function handle()
     {

@@ -7,7 +7,7 @@ use \Mix\Pool\ConnectionPoolInterface;
 /**
  * Class ConnectionPool
  * @author LIUJIAN <coder.keda@gmail.com>
- * @package Mix\Redis\Coroutine
+ * @package Mix\Redis\Pool
  */
 class ConnectionPool extends \Mix\Pool\ConnectionPool implements ConnectionPoolInterface
 {
