@@ -10,9 +10,9 @@ class RedisConnection extends BaseRedisConnection
 {
 
     // 请求后置事件
-    public function onRequestAfter()
+    public function onAfterRequest()
     {
-        parent::onRequestAfter();
+        parent::onAfterRequest();
         // 关闭连接
         $this->disconnect();
     }
