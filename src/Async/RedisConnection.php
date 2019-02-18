@@ -2,7 +2,7 @@
 
 namespace Mix\Redis\Async;
 
-use Mix\Core\BeanObject;
+use Mix\Core\Bean\BeanObject;
 
 /**
  * RedisAsync类

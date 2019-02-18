@@ -2,7 +2,7 @@
 
 namespace Mix\Redis\Coroutine;
 
-use Mix\Core\Coroutine;
+use Mix\Core\Coroutine\Coroutine;
 
 /**
  * RedisCoroutine组件
