@@ -2,13 +2,13 @@
 
 namespace Mix\Redis;
 
-use Mix\Core\Component\Component;
+use Mix\Core\Component\AbstractComponent;
 
 /**
  * BaseRedis组件
  * @author LIUJIAN <coder.keda@gmail.com>
  */
-class BaseRedisConnection extends Component implements RedisConnectionInterface
+class BaseRedisConnection extends AbstractComponent implements RedisConnectionInterface
 {
 
     // 主机
