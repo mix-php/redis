@@ -3,13 +3,16 @@
 namespace Mix\Redis;
 
 /**
- * redis组件
+ * Class RedisConnection
+ * @package Mix\Redis
  * @author LIUJIAN <coder.keda@gmail.com>
  */
-class RedisConnection extends BaseRedisConnection
+class RedisConnection extends \Mix\Redis\Base\RedisConnection
 {
 
-    // 后置处理事件
+    /**
+     * 后置处理事件
+     */
     public function onAfterInitialize()
     {
         parent::onAfterInitialize();
@@ -17,7 +20,9 @@ class RedisConnection extends BaseRedisConnection
         $this->disconnect();
     }
 
-    // 析构事件
+    /**
+     * 析构事件
+     */
     public function onDestruct()
     {
         parent::onDestruct();
