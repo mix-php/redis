@@ -39,7 +39,7 @@ class RedisConnection extends AbstractComponent implements RedisConnectionInterf
 
     /**
      * redis对象
-     * @var
+     * @var \Redis
      */
     protected $_redis;
 
@@ -66,7 +66,10 @@ class RedisConnection extends AbstractComponent implements RedisConnectionInterf
      */
     public function disconnect()
     {
-        $this->_redis = null;
+        if (isset($this->_redis)) {
+            $this->_redis->close();
+            $this->_redis = null;
+        }
         return true;
     }
 
