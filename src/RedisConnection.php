@@ -5,7 +5,7 @@ namespace Mix\Redis;
 /**
  * Class RedisConnection
  * @package Mix\Redis
- * @author LIUJIAN <coder.keda@gmail.com>
+ * @author liu,jian <coder.keda@gmail.com>
  */
 class RedisConnection extends \Mix\Redis\Base\RedisConnection
 {

@@ -5,7 +5,7 @@ namespace Mix\Redis;
 /**
  * Interface RedisConnectionInterface
  * @package Mix\Redis
- * @author LIUJIAN <coder.keda@gmail.com>
+ * @author liu,jian <coder.keda@gmail.com>
  *
  * @method bool psetex($key, $ttl, $value)
  * @method array|bool sScan($key, $iterator, $pattern = '', $count = 0)

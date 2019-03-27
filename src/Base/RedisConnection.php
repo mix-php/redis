@@ -8,7 +8,7 @@ use Mix\Redis\RedisConnectionInterface;
 /**
  * Class RedisConnection
  * @package Mix\Redis\Base
- * @author LIUJIAN <coder.keda@gmail.com>
+ * @author liu,jian <coder.keda@gmail.com>
  */
 class RedisConnection extends AbstractComponent implements RedisConnectionInterface
 {
