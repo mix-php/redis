@@ -6,11 +6,11 @@ use Mix\Core\Component\AbstractComponent;
 use Mix\Redis\RedisConnectionInterface;
 
 /**
- * Class RedisConnection
+ * Class AbstractRedisConnection
  * @package Mix\Redis\Base
  * @author liu,jian <coder.keda@gmail.com>
  */
-class RedisConnection extends AbstractComponent implements RedisConnectionInterface
+abstract class AbstractRedisConnection extends AbstractComponent implements RedisConnectionInterface
 {
 
     /**
