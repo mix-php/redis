@@ -44,7 +44,7 @@ class RedisConnection extends \Mix\Redis\Base\RedisConnection
             // 执行父类命令
             return parent::__call($name, $arguments);
         } catch (\Throwable $e) {
-            if (self::isDisconnectException($e)) {
+            if (static::isDisconnectException($e)) {
                 // 断开连接异常处理
                 $this->reconnect();
                 // 重新执行命令
