@@ -55,7 +55,8 @@ abstract class AbstractRedisConnection extends AbstractComponent implements Redi
         if (!$redis->connect($this->host, $this->port)) {
             throw new \RedisException("Redis connection failed, host: {$this->host}, port: {$this->port}");
         }
-        if ('' != (string)$this->password) {//假设密码是字符串 0 也能通过这个校验
+        // 假设密码是字符串 0 也能通过这个校验
+        if ('' != (string)$this->password) { 
             $redis->auth($this->password);
         }
         $redis->select($this->database);
