@@ -1,6 +1,6 @@
 {
-  "name": "mix/redis",
-  "description": "MixPHP 框架模块 http://www.mixphp.cn",
+  "name": "fenghoer/redis",
+  "description": "MixPHP 框架模块 http://www.mixphp.cn,本fork版本修复scan问题",
   "type": "framework",
   "keywords": [
     "framework",
