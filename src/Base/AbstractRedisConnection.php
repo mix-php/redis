@@ -111,4 +111,54 @@ abstract class AbstractRedisConnection extends AbstractComponent implements Redi
         return call_user_func_array([$this->_redis, $name], $arguments);
     }
 
+    /**
+     * 遍历key,参数需用引用类型
+     * @param $iterator
+     * @param string $pattern
+     * @param int $count
+     * @return array|bool
+     */
+    public function scan(&$iterator, $pattern = '', $count = 0)
+    {
+        return $this->_redis->scan($iterator, $pattern, $count);
+    }
+
+    /**
+     * 遍历set key,参数需用引用类型
+     * @param $key
+     * @param $iterator
+     * @param string $pattern
+     * @param int $count
+     * @return array|bool
+     */
+    public function sScan($key, &$iterator, $pattern = '', $count = 0)
+    {
+        return $this->_redis->sScan($key, $iterator, $pattern, $count);
+    }
+
+    /**
+     * 遍历zset key,参数需用引用类型
+     * @param $key
+     * @param $iterator
+     * @param string $pattern
+     * @param int $count
+     * @return array|bool
+     */
+    public function zScan($key, &$iterator, $pattern = '', $count = 0)
+    {
+        return $this->_redis->zScan($key, $iterator, $pattern, $count);
+    }
+
+    /**
+     * 遍历hash key,参数需用引用类型
+     * @param $key
+     * @param $iterator
+     * @param string $pattern
+     * @param int $count
+     * @return array
+     */
+    public function hScan($key, &$iterator, $pattern = '', $count = 0)
+    {
+        return $this->_redis->hScan($key, $iterator, $pattern, $count);
+    }
 }
