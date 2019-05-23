@@ -112,7 +112,7 @@ abstract class AbstractRedisConnection extends AbstractComponent implements Redi
     }
 
     /**
-     * 遍历key,参数需用引用类型
+     * 遍历key
      * @param $iterator
      * @param string $pattern
      * @param int $count
@@ -124,7 +124,7 @@ abstract class AbstractRedisConnection extends AbstractComponent implements Redi
     }
 
     /**
-     * 遍历set key,参数需用引用类型
+     * 遍历set key
      * @param $key
      * @param $iterator
      * @param string $pattern
@@ -137,7 +137,7 @@ abstract class AbstractRedisConnection extends AbstractComponent implements Redi
     }
 
     /**
-     * 遍历zset key,参数需用引用类型
+     * 遍历zset key
      * @param $key
      * @param $iterator
      * @param string $pattern
@@ -150,7 +150,7 @@ abstract class AbstractRedisConnection extends AbstractComponent implements Redi
     }
 
     /**
-     * 遍历hash key,参数需用引用类型
+     * 遍历hash key
      * @param $key
      * @param $iterator
      * @param string $pattern
