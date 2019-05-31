@@ -38,6 +38,11 @@ abstract class AbstractRedisConnection extends AbstractComponent implements Redi
     public $password = '';
 
     /**
+     * @var \Mix\Redis\ExecuteListenerInterface
+     */
+    public $listener;
+
+    /**
      * redis对象
      * @var \Redis
      */
@@ -56,7 +61,7 @@ abstract class AbstractRedisConnection extends AbstractComponent implements Redi
             throw new \RedisException("Redis connection failed, host: {$this->host}, port: {$this->port}");
         }
         // 假设密码是字符串 0 也能通过这个校验
-        if ('' != (string)$this->password) { 
+        if ('' != (string)$this->password) {
             $redis->auth($this->password);
         }
         $redis->select($this->database);
@@ -97,18 +102,53 @@ abstract class AbstractRedisConnection extends AbstractComponent implements Redi
         $this->connect();
     }
 
+
+    /**
+     * 获取微秒时间
+     * @return float
+     */
+    protected static function microtime()
+    {
+        list($usec, $sec) = explode(" ", microtime());
+        return ((float)$usec + (float)$sec);
+    }
+
+    /**
+     * 执行监听器
+     * @param $command
+     * @param $arguments
+     * @param $time
+     */
+    protected function runListener($command, $arguments, $time)
+    {
+        if (!$this->listener) {
+            return;
+        }
+        $this->listener->listen([
+            'command'   => $command,
+            'arguments' => $arguments,
+            'time'      => $time,
+        ]);
+    }
+
     /**
      * 执行命令
      * @param $name
      * @param $arguments
      * @return mixed
      */
-    public function __call($name, $arguments)
+    public function __call($command, $arguments)
     {
         // 自动连接
         $this->autoConnect();
         // 执行命令
-        return call_user_func_array([$this->_redis, $name], $arguments);
+        $microtime = static::microtime();
+        $result    = call_user_func_array([$this->_redis, $command], $arguments);
+        $time      = round((static::microtime() - $microtime) * 1000, 2);
+        // 执行监听器
+        $this->runListener($command, $arguments, $time);
+        // 返回
+        return $result;
     }
 
 }
