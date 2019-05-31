@@ -12,9 +12,9 @@ interface ExecuteListenerInterface
 
     /**
      * 监听
-     * @param $query
+     * @param array $cmd
      * @return mixed
      */
-    public function listen($query);
+    public function listen($cmd);
 
 }
