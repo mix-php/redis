@@ -2,7 +2,7 @@
 
 namespace Mix\Redis\Base;
 
-use Mix\Core\Component\AbstractComponent;
+use Mix\Component\AbstractComponent;
 use Mix\Redis\RedisConnectionInterface;
 
 /**
