@@ -2,7 +2,6 @@
 
 namespace Mix\Redis\Base;
 
-use Mix\Component\AbstractComponent;
 use Mix\Redis\RedisConnectionInterface;
 
 /**
@@ -10,7 +9,7 @@ use Mix\Redis\RedisConnectionInterface;
  * @package Mix\Redis\Base
  * @author liu,jian <coder.keda@gmail.com>
  */
-abstract class AbstractRedisConnection extends AbstractComponent implements RedisConnectionInterface
+abstract class AbstractRedisConnection implements RedisConnectionInterface
 {
 
     /**
@@ -47,6 +46,25 @@ abstract class AbstractRedisConnection extends AbstractComponent implements Redi
      * @var \Redis
      */
     protected $_redis;
+
+    /**
+     * Authorization constructor.
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        BeanInjector::inject($this, $config);
+    }
+
+    /**
+     * 析构
+     */
+    public function __destruct()
+    {
+        // TODO: Implement __destruct() method.
+        // 关闭连接
+        $this->disconnect();
+    }
 
     /**
      * 创建连接

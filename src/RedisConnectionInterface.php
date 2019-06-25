@@ -182,10 +182,57 @@ namespace Mix\Redis;
 interface RedisConnectionInterface
 {
 
-    // 关闭连接
+    /**
+     * 关闭连接
+     * @return bool
+     */
     public function disconnect();
 
-    // 执行命令
-    public function __call($name, $arguments);
+    /**
+     * 执行命令
+     * @param $name
+     * @param $arguments
+     * @return mixed
+     */
+    public function __call($command, $arguments);
+
+    /**
+     * 遍历key
+     * @param $iterator
+     * @param string $pattern
+     * @param int $count
+     * @return array|bool
+     */
+    public function scan(&$iterator, $pattern = '', $count = 0);
+
+    /**
+     * 遍历set key
+     * @param $key
+     * @param $iterator
+     * @param string $pattern
+     * @param int $count
+     * @return array|bool
+     */
+    public function sScan($key, &$iterator, $pattern = '', $count = 0);
+
+    /**
+     * 遍历zset key
+     * @param $key
+     * @param $iterator
+     * @param string $pattern
+     * @param int $count
+     * @return array|bool
+     */
+    public function zScan($key, &$iterator, $pattern = '', $count = 0);
+
+    /**
+     * 遍历hash key
+     * @param $key
+     * @param $iterator
+     * @param string $pattern
+     * @param int $count
+     * @return array
+     */
+    public function hScan($key, &$iterator, $pattern = '', $count = 0);
 
 }

@@ -13,16 +13,6 @@ class RedisConnection extends AbstractRedisConnection
 {
 
     /**
-     * 析构事件
-     */
-    public function onDestruct()
-    {
-        parent::onDestruct();
-        // 关闭连接
-        $this->disconnect();
-    }
-
-    /**
      * 重新连接
      * @throws \RedisException
      */

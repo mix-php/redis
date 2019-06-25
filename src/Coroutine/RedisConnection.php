@@ -14,4 +14,14 @@ class RedisConnection extends \Mix\Redis\Persistent\RedisConnection
 
     use ConnectionTrait;
 
+    /**
+     * 析构
+     */
+    public function __destruct()
+    {
+        // TODO: Implement __destruct() method.
+        // 丢弃连接
+        $this->discard();
+    }
+
 }
