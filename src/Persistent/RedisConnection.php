@@ -46,7 +46,7 @@ class RedisConnection extends AbstractRedisConnection
             // 执行父类命令
             return parent::__call($name, $arguments);
         } catch (\Throwable $e) {
-            if (static::isDisconnectException($e)) {
+            if (static::isDisconnectException($e) && !in_array(strtolower($name), ['exec'])) {
                 // 断开连接异常处理
                 $this->reconnect();
                 // 重新执行命令
