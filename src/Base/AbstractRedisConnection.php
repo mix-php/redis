@@ -2,6 +2,7 @@
 
 namespace Mix\Redis\Base;
 
+use Mix\Bean\BeanInjector;
 use Mix\Redis\RedisConnectionInterface;
 
 /**
