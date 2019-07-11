@@ -49,10 +49,12 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
     protected $_redis;
 
     /**
-     * Authorization constructor.
+     * AbstractRedisConnection constructor.
      * @param array $config
+     * @throws \PhpDocReader\AnnotationException
+     * @throws \ReflectionException
      */
-    public function __construct(array $config)
+    public function __construct(array $config = [])
     {
         BeanInjector::inject($this, $config);
     }
