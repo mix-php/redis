@@ -3,7 +3,9 @@
 namespace Mix\Redis\Base;
 
 use Mix\Bean\BeanInjector;
+use Mix\Redis\Event\ExecuteEvent;
 use Mix\Redis\RedisConnectionInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class AbstractRedisConnection
@@ -38,9 +40,10 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
     public $password = '';
 
     /**
-     * @var \Mix\Redis\ExecuteListenerInterface
+     * 事件调度器
+     * @var EventDispatcherInterface
      */
-    public $listener;
+    public $eventDispatcher;
 
     /**
      * redis对象
@@ -135,21 +138,21 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
     }
 
     /**
-     * 执行监听器
+     * 调度执行事件
      * @param $command
      * @param $arguments
      * @param $time
      */
-    protected function runListener($command, $arguments, $time)
+    protected function dispatchExecuteEvent($command, $arguments, $time)
     {
-        if (!$this->listener) {
+        if (!$this->eventDispatcher) {
             return;
         }
-        $this->listener->listen([
-            'command'   => $command,
-            'arguments' => $arguments,
-            'time'      => $time,
-        ]);
+        $event            = new ExecuteEvent();
+        $event->command   = $command;
+        $event->arguments = $arguments;
+        $event->time      = $time;
+        $this->eventDispatcher->dispatch($event);
     }
 
     /**
@@ -166,8 +169,8 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
         $microtime = static::microtime();
         $result    = call_user_func_array([$this->_redis, $command], $arguments);
         $time      = round((static::microtime() - $microtime) * 1000, 2);
-        // 执行监听器
-        $this->runListener($command, $arguments, $time);
+        // 调度执行事件
+        $this->dispatchExecuteEvent($command, $arguments, $time);
         // 返回
         return $result;
     }
