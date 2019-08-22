@@ -183,6 +183,13 @@ interface RedisConnectionInterface
 {
 
     /**
+     * 连接
+     * @return bool
+     * @throws \RedisException
+     */
+    public function connect();
+
+    /**
      * 关闭连接
      * @return bool
      */

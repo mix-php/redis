@@ -23,12 +23,12 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
 
     /**
      * 端口
-     * @var string
+     * @var int
      */
-    public $port = '';
+    public $port = 6379;
 
     /**
-     * 超时时间
+     * 超时
      * @var float
      */
     public $timeout = 0.0;
@@ -40,7 +40,7 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
     public $retryInterval = 0;
 
     /**
-     * 读超时时间
+     * 读取超时
      * phpredis >= 3.1.3
      * @var int
      */
@@ -48,9 +48,9 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
 
     /**
      * 数据库
-     * @var string
+     * @var int
      */
-    public $database = '';
+    public $database = 0;
 
     /**
      * 密码
@@ -98,8 +98,9 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
      */
     protected function createConnection()
     {
-        $redis = new \Redis();
-        if (!$redis->connect($this->host, $this->port, $this->timeout, null, $this->retryInterval)) {
+        $redis  = new \Redis();
+        $result = $redis->connect($this->host, $this->port, $this->timeout, null, $this->retryInterval);
+        if ($result === false) {
             throw new \RedisException(sprintf('Redis connect failed (host: %s, port: %s)', $this->host, $this->port));
         }
         $redis->setOption(\Redis::OPT_READ_TIMEOUT, $this->readTimeout);
@@ -109,6 +110,20 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
         }
         $redis->select($this->database);
         return $redis;
+    }
+
+    /**
+     * 连接
+     * @return bool
+     * @throws \RedisException
+     */
+    public function connect()
+    {
+        if (isset($this->_redis)) {
+            return true;
+        }
+        $this->_redis = $this->createConnection();
+        return true;
     }
 
     /**
@@ -123,28 +138,6 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
         }
         return true;
     }
-
-    /**
-     * 连接
-     * @throws \RedisException
-     */
-    protected function connect()
-    {
-        $this->_redis = $this->createConnection();
-    }
-
-    /**
-     * 自动连接
-     * @throws \RedisException
-     */
-    protected function autoConnect()
-    {
-        if (isset($this->_redis)) {
-            return;
-        }
-        $this->connect();
-    }
-
 
     /**
      * 获取微秒时间
@@ -182,8 +175,8 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
      */
     public function __call($command, $arguments)
     {
-        // 自动连接
-        $this->autoConnect();
+        // 连接
+        $this->connect();
         // 执行命令
         $microtime = static::microtime();
         $result    = call_user_func_array([$this->_redis, $command], $arguments);
