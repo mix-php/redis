@@ -28,6 +28,25 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
     public $port = '';
 
     /**
+     * 超时时间
+     * @var float
+     */
+    public $timeout = 0.0;
+
+    /**
+     * 重连间隔
+     * @var int
+     */
+    public $retryInterval = 0;
+
+    /**
+     * 读超时时间
+     * phpredis >= 3.1.3
+     * @var int
+     */
+    public $readTimeout = -1;
+
+    /**
      * 数据库
      * @var string
      */
@@ -80,10 +99,10 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
     protected function createConnection()
     {
         $redis = new \Redis();
-        // connect 这里如果设置timeout，是全局有效的，执行brPop时会受影响
-        if (!$redis->connect($this->host, $this->port)) {
-            throw new \RedisException("Redis connection failed, host: {$this->host}, port: {$this->port}");
+        if (!$redis->connect($this->host, $this->port, $this->timeout, null, $this->retryInterval)) {
+            throw new \RedisException(sprintf('Redis connect failed (host: %s, port: %s)', $this->host, $this->port));
         }
+        $redis->setOption(\Redis::OPT_READ_TIMEOUT, $this->readTimeout);
         // 假设密码是字符串 0 也能通过这个校验
         if ('' != (string)$this->password) {
             $redis->auth($this->password);
