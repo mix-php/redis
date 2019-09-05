@@ -3,15 +3,15 @@
 namespace Mix\Redis;
 
 /**
- * Interface RedisConnectionInterface
+ * Interface ConnectionInterface
  * @package Mix\Redis
  * @author liu,jian <coder.keda@gmail.com>
  *
  * @method bool psetex($key, $ttl, $value)
- * @method array|bool sScan($key, $iterator, $pattern = '', $count = 0)
- * @method array|bool scan(&$iterator, $pattern = null, $count = 0)
- * @method array|bool zScan($key, $iterator, $pattern = '', $count = 0)
- * @method array hScan($key, $iterator, $pattern = '', $count = 0)
+ * method array|bool sScan($key, $iterator, $pattern = '', $count = 0)
+ * method array|bool scan(&$iterator, $pattern = null, $count = 0)
+ * method array|bool zScan($key, $iterator, $pattern = '', $count = 0)
+ * method array hScan($key, $iterator, $pattern = '', $count = 0)
  * @method mixed client($command, $arg = '')
  * @method mixed slowlog($command)
  * @method bool open($host, $port = 6379, $timeout = 0.0, $retry_interval = 0)
@@ -181,7 +181,7 @@ namespace Mix\Redis;
  * @method mixed rawCommand($command, $arguments)
  * @method int getMode()
  */
-interface RedisConnectionInterface
+interface ConnectionInterface
 {
 
     /**

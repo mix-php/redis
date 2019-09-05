@@ -15,7 +15,7 @@ class ConnectionPool extends AbstractConnectionPool implements ConnectionPoolInt
 
     /**
      * 获取连接
-     * @return \Mix\Redis\Coroutine\RedisConnection
+     * @return \Mix\Redis\Coroutine\Connection
      */
     public function getConnection()
     {

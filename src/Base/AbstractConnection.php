@@ -4,15 +4,15 @@ namespace Mix\Redis\Base;
 
 use Mix\Bean\BeanInjector;
 use Mix\Redis\Event\ExecuteEvent;
-use Mix\Redis\RedisConnectionInterface;
+use Mix\Redis\ConnectionInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Class AbstractRedisConnection
+ * Class AbstractConnection
  * @package Mix\Redis\Base
  * @author liu,jian <coder.keda@gmail.com>
  */
-abstract class AbstractRedisConnection implements RedisConnectionInterface
+abstract class AbstractConnection implements ConnectionInterface
 {
 
     /**
@@ -71,7 +71,7 @@ abstract class AbstractRedisConnection implements RedisConnectionInterface
     protected $_redis;
 
     /**
-     * AbstractRedisConnection constructor.
+     * AbstractConnection constructor.
      * @param array $config
      * @throws \PhpDocReader\AnnotationException
      * @throws \ReflectionException

@@ -5,11 +5,11 @@ namespace Mix\Redis\Coroutine;
 use Mix\Pool\ConnectionTrait;
 
 /**
- * Class RedisConnection
+ * Class Connection
  * @package Mix\Redis\Coroutine
  * @author liu,jian <coder.keda@gmail.com>
  */
-class RedisConnection extends \Mix\Redis\Persistent\RedisConnection
+class Connection extends \Mix\Redis\Persistent\Connection
 {
 
     use ConnectionTrait;
