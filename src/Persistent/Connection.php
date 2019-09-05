@@ -9,7 +9,7 @@ use Mix\Redis\Base\AbstractConnection;
  * @package Mix\Redis\Persistent
  * @author liu,jian <coder.keda@gmail.com>
  */
-class Connection extends AbstractConnection
+class Connection extends \Mix\Redis\Connection
 {
 
     /**
