@@ -26,7 +26,7 @@ namespace Mix\Redis;
  * @method bool setnx($key, $value)
  * @method int del($key1, $key2 = null, $key3 = null)
  * @method int delete($key1, $key2 = null, $key3 = null)
- * @method multi($mode = Redis::MULTI)
+ * @method multi($mode = \Redis::MULTI)
  * @method array exec()
  * @method discard()
  * @method watch($key)
