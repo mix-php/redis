@@ -2,6 +2,7 @@
 
 namespace Mix\Redis\Pool;
 
+use Mix\Redis\Coroutine\Connection;
 use Mix\Pool\ConnectionPoolInterface;
 use Mix\Pool\AbstractConnectionPool;
 
@@ -15,7 +16,7 @@ class ConnectionPool extends AbstractConnectionPool implements ConnectionPoolInt
 
     /**
      * 获取连接
-     * @return \Mix\Redis\Coroutine\Connection
+     * @return Connection
      */
     public function getConnection()
     {
