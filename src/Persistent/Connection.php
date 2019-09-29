@@ -2,8 +2,6 @@
 
 namespace Mix\Redis\Persistent;
 
-use Mix\Redis\Base\AbstractConnection;
-
 /**
  * Class Connection
  * @package Mix\Redis\Persistent

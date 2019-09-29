@@ -19,7 +19,6 @@ class Connection extends \Mix\Redis\Persistent\Connection
      */
     public function __destruct()
     {
-        // TODO: Implement __destruct() method.
         // 丢弃连接
         $this->discard();
     }

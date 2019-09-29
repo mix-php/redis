@@ -72,8 +72,6 @@ class Connection implements ConnectionInterface
     /**
      * Connection constructor.
      * @param array $config
-     * @throws \PhpDocReader\AnnotationException
-     * @throws \ReflectionException
      */
     public function __construct(array $config = [])
     {
@@ -85,7 +83,6 @@ class Connection implements ConnectionInterface
      */
     public function __destruct()
     {
-        // TODO: Implement __destruct() method.
         // 关闭连接
         $this->disconnect();
     }
@@ -168,7 +165,7 @@ class Connection implements ConnectionInterface
 
     /**
      * 执行命令
-     * @param $name
+     * @param $command
      * @param $arguments
      * @return mixed
      */
