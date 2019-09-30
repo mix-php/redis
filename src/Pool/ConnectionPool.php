@@ -2,7 +2,7 @@
 
 namespace Mix\Redis\Pool;
 
-use Mix\Redis\Coroutine\Connection;
+use Mix\Redis\Connection;
 use Mix\Pool\ConnectionPoolInterface;
 use Mix\Pool\AbstractConnectionPool;
 

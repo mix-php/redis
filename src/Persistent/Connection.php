@@ -2,12 +2,14 @@
 
 namespace Mix\Redis\Persistent;
 
+use Mix\Redis\AbstractConnection;
+
 /**
  * Class Connection
  * @package Mix\Redis\Persistent
  * @author liu,jian <coder.keda@gmail.com>
  */
-class Connection extends \Mix\Redis\Connection
+class Connection extends AbstractConnection
 {
 
     /**
