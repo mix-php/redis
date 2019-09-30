@@ -9,7 +9,7 @@ use Mix\Pool\ConnectionTrait;
  * @package Mix\Redis
  * @author liu,jian <coder.keda@gmail.com>
  */
-class Connection extends \Mix\Redis\Persistent\Connection
+class Connection extends \Mix\Redis\Persistent\Connection implements ConnectionInterface
 {
 
     use ConnectionTrait;

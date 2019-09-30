@@ -11,7 +11,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
  * @package Mix\Redis
  * @author liu,jian <coder.keda@gmail.com>
  */
-abstract class AbstractConnection implements ConnectionInterface
+abstract class AbstractConnection
 {
 
     /**
@@ -157,10 +157,10 @@ abstract class AbstractConnection implements ConnectionInterface
     /**
      * 执行命令
      * @param $command
-     * @param $arguments
+     * @param array $arguments
      * @return mixed
      */
-    public function __call($command, $arguments)
+    public function __call($command, $arguments = [])
     {
         // 连接
         $this->connect();

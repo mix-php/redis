@@ -25,12 +25,10 @@ class Connection extends AbstractConnection
     /**
      * 执行命令
      * @param $name
-     * @param $arguments
+     * @param array $arguments
      * @return mixed
-     * @throws \RedisException
-     * @throws \Throwable
      */
-    public function __call($name, $arguments)
+    public function __call($name, $arguments = [])
     {
         try {
             // 执行父类命令

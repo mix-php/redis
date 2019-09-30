@@ -28,7 +28,7 @@ namespace Mix\Redis;
  * @method int delete($key1, $key2 = null, $key3 = null)
  * @method multi($mode = \Redis::MULTI)
  * @method array exec()
- * @method discard()
+ * method discard() 被覆盖为其他功能，需使用 __call 调用
  * @method watch($key)
  * @method unwatch()
  * @method subscribe(array $channels, $callback)
@@ -243,5 +243,17 @@ interface ConnectionInterface
      * @return array
      */
     public function hScan($key, &$iterator, $pattern = '', $count = 0);
+
+    /**
+     * 释放连接
+     * @return bool
+     */
+    public function release();
+
+    /**
+     * 丢弃连接
+     * @return bool
+     */
+    public function discard();
 
 }
