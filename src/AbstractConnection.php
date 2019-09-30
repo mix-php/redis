@@ -183,7 +183,8 @@ abstract class AbstractConnection implements ConnectionInterface
      */
     public function scan(&$iterator, $pattern = '', $count = 0)
     {
-        return $this->__call(__FUNCTION__, func_get_args());
+        // $iterator 必须要加 &
+        return $this->__call(__FUNCTION__, [&$iterator, $pattern, $count]);
     }
 
     /**
@@ -196,7 +197,8 @@ abstract class AbstractConnection implements ConnectionInterface
      */
     public function sScan($key, &$iterator, $pattern = '', $count = 0)
     {
-        return $this->__call(__FUNCTION__, func_get_args());
+        // $iterator 必须要加 &
+        return $this->__call(__FUNCTION__, [$key, &$iterator, $pattern, $count]);
     }
 
     /**
@@ -209,7 +211,8 @@ abstract class AbstractConnection implements ConnectionInterface
      */
     public function zScan($key, &$iterator, $pattern = '', $count = 0)
     {
-        return $this->__call(__FUNCTION__, func_get_args());
+        // $iterator 必须要加 &
+        return $this->__call(__FUNCTION__, [$key, &$iterator, $pattern, $count]);
     }
 
     /**
@@ -222,7 +225,8 @@ abstract class AbstractConnection implements ConnectionInterface
      */
     public function hScan($key, &$iterator, $pattern = '', $count = 0)
     {
-        return $this->__call(__FUNCTION__, func_get_args());
+        // $iterator 必须要加 &
+        return $this->__call(__FUNCTION__, [$key, &$iterator, $pattern, $count]);
     }
 
 }
