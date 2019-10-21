@@ -16,7 +16,7 @@ namespace Mix\Redis;
  * @method mixed slowlog($command)
  * @method bool open($host, $port = 6379, $timeout = 0.0, $retry_interval = 0)
  * @method popen($host, $port = 6379, $timeout = 0.0, $persistent_id = null)
- * @method close()
+ * method close()
  * @method bool setOption($name, $value)
  * @method int getOption($name)
  * @method string ping()
@@ -195,7 +195,7 @@ interface ConnectionInterface
      * 关闭连接
      * @return bool
      */
-    public function disconnect();
+    public function close();
 
     /**
      * 执行命令

@@ -117,7 +117,7 @@ abstract class AbstractConnection
      * 关闭连接
      * @return bool
      */
-    public function disconnect()
+    public function close()
     {
         if (isset($this->_redis)) {
             $this->_redis->close();
