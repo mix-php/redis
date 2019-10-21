@@ -7,16 +7,18 @@ namespace Mix\Redis;
  * @package Mix\Redis
  * @author liu,jian <coder.keda@gmail.com>
  *
- * @method bool psetex($key, $ttl, $value)
  * method array|bool sScan($key, $iterator, $pattern = '', $count = 0)
  * method array|bool scan(&$iterator, $pattern = null, $count = 0)
  * method array|bool zScan($key, $iterator, $pattern = '', $count = 0)
  * method array hScan($key, $iterator, $pattern = '', $count = 0)
+ * method close()
+ * method discard() 被覆盖为其他功能，需使用 __call 调用
+ *
+ * @method bool psetex($key, $ttl, $value)
  * @method mixed client($command, $arg = '')
  * @method mixed slowlog($command)
  * @method bool open($host, $port = 6379, $timeout = 0.0, $retry_interval = 0)
  * @method popen($host, $port = 6379, $timeout = 0.0, $persistent_id = null)
- * method close()
  * @method bool setOption($name, $value)
  * @method int getOption($name)
  * @method string ping()
@@ -28,7 +30,6 @@ namespace Mix\Redis;
  * @method int delete($key1, $key2 = null, $key3 = null)
  * @method multi($mode = \Redis::MULTI)
  * @method array exec()
- * method discard() 被覆盖为其他功能，需使用 __call 调用
  * @method watch($key)
  * @method unwatch()
  * @method subscribe(array $channels, $callback)
@@ -187,7 +188,6 @@ interface ConnectionInterface
     /**
      * 连接
      * @return bool
-     * @throws \RedisException
      */
     public function connect();
 

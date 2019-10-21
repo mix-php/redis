@@ -102,13 +102,9 @@ abstract class AbstractConnection
     /**
      * 连接
      * @return bool
-     * @throws \RedisException
      */
     public function connect()
     {
-        if (isset($this->_redis)) {
-            return true;
-        }
         $this->_redis = $this->createConnection();
         return true;
     }
@@ -119,21 +115,12 @@ abstract class AbstractConnection
      */
     public function close()
     {
-        if (isset($this->_redis)) {
-            $this->_redis->close();
-            $this->_redis = null;
+        if (!isset($this->_redis)) {
+            return true;
         }
+        $this->_redis->close();
+        $this->_redis = null;
         return true;
-    }
-
-    /**
-     * 获取微秒时间
-     * @return float
-     */
-    protected static function microtime()
-    {
-        list($usec, $sec) = explode(" ", microtime());
-        return ((float)$usec + (float)$sec);
     }
 
     /**
@@ -155,6 +142,16 @@ abstract class AbstractConnection
     }
 
     /**
+     * 获取微秒时间
+     * @return float
+     */
+    protected static function microtime()
+    {
+        list($usec, $sec) = explode(" ", microtime());
+        return ((float)$usec + (float)$sec);
+    }
+
+    /**
      * 执行命令
      * @param $command
      * @param array $arguments
@@ -162,8 +159,6 @@ abstract class AbstractConnection
      */
     public function __call($command, $arguments = [])
     {
-        // 连接
-        $this->connect();
         // 执行命令
         $microtime = static::microtime();
         $result    = call_user_func_array([$this->_redis, $command], $arguments);

@@ -18,7 +18,7 @@ class Connection extends AbstractConnection
      */
     protected function reconnect()
     {
-        $this->disconnect();
+        $this->close();
         $this->connect();
     }
 
