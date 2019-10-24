@@ -76,7 +76,6 @@ abstract class AbstractConnection
     public function __construct(array $config = [])
     {
         BeanInjector::inject($this, $config);
-        $this->connect();
     }
 
     /**
