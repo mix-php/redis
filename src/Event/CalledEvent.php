@@ -3,11 +3,11 @@
 namespace Mix\Redis\Event;
 
 /**
- * Class ExecuteEvent
+ * Class CalledEvent
  * @package Mix\Redis\Event
  * @author liu,jian <coder.keda@gmail.com>
  */
-class ExecuteEvent
+class CalledEvent
 {
 
     /**

@@ -3,7 +3,7 @@
 namespace Mix\Redis;
 
 use Mix\Bean\BeanInjector;
-use Mix\Redis\Event\ExecuteEvent;
+use Mix\Redis\Event\CalledEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -124,17 +124,17 @@ abstract class AbstractConnection
     }
 
     /**
-     * 调度执行事件
+     * 调度事件
      * @param $command
      * @param $arguments
      * @param $time
      */
-    protected function dispatchExecuteEvent($command, $arguments, $time)
+    protected function dispatchEvent($command, $arguments, $time)
     {
         if (!$this->eventDispatcher) {
             return;
         }
-        $event            = new ExecuteEvent();
+        $event            = new CalledEvent();
         $event->command   = $command;
         $event->arguments = $arguments;
         $event->time      = $time;
@@ -164,7 +164,7 @@ abstract class AbstractConnection
         $result    = call_user_func_array([$this->_redis, $command], $arguments);
         $time      = round((static::microtime() - $microtime) * 1000, 2);
         // 调度执行事件
-        $this->dispatchExecuteEvent($command, $arguments, $time);
+        $this->dispatchEvent($command, $arguments, $time);
         // 返回
         return $result;
     }
