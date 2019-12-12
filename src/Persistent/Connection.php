@@ -27,6 +27,8 @@ class Connection extends AbstractConnection
      * @param $name
      * @param array $arguments
      * @return mixed
+     * @throws \RedisException
+     * @throws \Throwable
      */
     public function __call($name, $arguments = [])
     {
